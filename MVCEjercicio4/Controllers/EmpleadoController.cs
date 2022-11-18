@@ -5,15 +5,16 @@ namespace MVCEjercicio4.Controllers
 {
     
     public class EmpleadoController : Controller
+        
 
     {
-       
         public MVCEjercicio4.Models.DeveloferContext db = new DeveloferContext();
+        static List<Empleado> employed;
         public IActionResult Index()
         {
-            var empleados = db.Empleados.ToList();
-            TempData["ListaEmpleados"] = empleados;
-            return View(empleados);
+            var employed = db.Empleados.ToList();
+            
+            return View(employed);
         }
 
         [HttpPost]
