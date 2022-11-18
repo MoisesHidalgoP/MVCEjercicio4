@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Empleados";
+}
+
+<h1>Lista de Empleados</h1>
+<br /> 
+<br />
+
+@if(Model!=null)
+{
+    using (Html.BeginForm())
+    {
+        <select id="selAreas" onchange="setArea(this.value);">
+            <option value="0" >Selecciona empleado</option>
+            @foreach (Empleado empleados in Model)
+            {
+                <option value="@empleados.IdArea">@empleados.Nombre</option>
+            }
+
+        </select>
+        <input type="submit" value="Buscar Area "></input>
+        <input type="hidden" id="IdArea" name="IdArea" value="0"/>
+        <br />
+        <br />
+
+        if(ViewBag.Area!=null)
+        {
+            <label>@ViewBag.Area</label>
+        }
+
+    }   
+}
+<script>
+    function SetArea(id)
+    {
+        document.getElementById('IdArea').value = id;
+
+    }
+</script>
