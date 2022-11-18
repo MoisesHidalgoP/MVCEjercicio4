@@ -12,7 +12,7 @@ namespace MVCEjercicio4.Controllers
         static List<Empleado> employed;
         public IActionResult Index()
         {
-            var employed = db.Empleados.ToList();
+            employed = db.Empleados.ToList();
             
             return View(employed);
         }
@@ -20,12 +20,14 @@ namespace MVCEjercicio4.Controllers
         [HttpPost]
         public IActionResult Index(int IdArea)
         {
+            employed = db.Empleados.ToList();
+
             Empleado empleados = db.Empleados.Where(e => e.IdArea == IdArea).FirstOrDefault();
             if (empleados != null)
             {
                 ViewBag.Area = "Empleado" + empleados.Nombre + " - " + "Area: " + empleados.IdAreaNavigation.Area1;
             }
-            return View(empleados);
+            return View(employed);
         }
     }
 }
